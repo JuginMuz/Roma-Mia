@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Roma Mia's authentic Italian cuisine in Clerkenwell. Book your table today and enjoy homemade pasta and Roman-inspired dishes.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://use.typekit.net/qfk7beb.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+    <title>Reservations</title>
+</head>
+<body>
+    <header class="header">
+        <div class="hamburger-menu">
+            <div class="hamburger-menu-icon" id="hamburger-menu-icon">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+        <div class="logo">
+            <a href="index.html">Roma Mia</a>
+        </div>
+        <div class="header-right">
+            <a href="reservations.html" class="bar-book-btn">Book a Table</a>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+            <div class="language-dropdown">
+                <div class="dropdown-trigger">
+                    <span id="selected-language">EN</span>
+                    <span class="caret">></span>
+                </div>
+                <ul class="dropdown-options">
+                    <li data-value="en">EN</li>
+                    <li data-value="es">ES</li>
+                    <li data-value="it">IT</li>
+                    <li data-value="fr">FR</li>
+                </ul>
+            </div> 
+        </div>
+    </header>
+
+        <!-- Sidebar Menu -->
+        <div class="sidebar" id="sidebar">
+            <div class="close-btn" id="close-btn">&times;</div>
+            <ul>
+                <li><a href="/index.html">Home</a></li>
+                <li><a href="/menu.html">Menu</a></li>
+                <li><a href="/reservations.html">Reservations</a></li>
+                <li><a href="/about.html">About Us</a></li>
+            </ul>
+        </div>
+
+    <main>
+        <section class="hero-reservation" id="homeReservation">
+            <div class="hero-reservation-content">
+            </div>
+            <div class="reservation-arrow" id="reservationScrollArrow">
+                <span>SCROLL</span>
+                <div class="dots">
+                  <span class="dot"></span>
+                  <span class="dot"></span>
+                </div>
+                <div class="arrow-down"></div>
+              </div>              
+        </section>
+
+        <div class="next-section">
+            <div class="main-content">   
+                <section class="reservation-section" >
+                    <div class="thank-you-message hidden" id="thankYouMessageBooking">
+                        <p>Thank you for booking!<br> You will receive an email confirmation shortly.</p>
+                    </div>
+                    <form class="reservation-form" id="reservationForm">
+                        
+                        <p class="booking-text" >Enter your details and book a table </p>
+                        <div class="form-step" id="step1">
+                            <label for="firstName">First Name:</label>
+                            <input type="text" id="firstName" name="firstName" required />
+                        </div>
+                        <div class="form-step hidden" id="step2">
+                            <label for="lastName">Last Name:</label>
+                            <input type="text" id="lastName" name="lastName" required />
+                        </div>
+                        <div class="form-step hidden" id="step3">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required />
+                        </div>
+                        <div class="form-step hidden" id="step4">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" pattern="[0-9]+" required />
+                        </div>
+                        <div class="form-step hidden" id="step5">
+                            <label for="date">Booking Date:</label>
+                            <input type="date" id="date" name="date" min="" required />
+                        </div>
+                        <div class="form-step hidden" id="step6">
+                            <label for="time">Booking Time:</label>
+                            <select id="time" name="time" required>
+                            </select>
+                        </div>
+                        <div class="form-step hidden" id="step7">
+                            <label for="guests">Number of Guests:</label>
+                            <select id="guests" name="guests" required>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        <div class="form-step hidden" id="step8">
+                            <label for="requests">Special Requests (optional):</label>
+                            <textarea id="requests" name="requests"></textarea>
+                        </div>
+                        <div class="form-summary hidden" id="summarySection">
+                            <p class="summary-title">Booking Summary</p>
+                            <p class="summary-details" id="summaryDetails"></p>
+                            <div class="summary-buttons">
+                            <button type="button" id="editButton">Edit</button>
+                            <button type="submit">Confirm Booking</button>
+                            </div>
+                        </div>
+                        <div class="form-navigation">
+                            <button type="button" id="backButton" class="hidden">Back</button>
+                            <button type="button" id="nextButton">Next</button>
+                        </div>
+                    </form>
+                </section>
+                <div class="right-section">
+                    <div class="location-info-section">
+                        <div class="title-days">
+                            <p class="location-info-title">Roma Mia</p>
+                            <p class="location-address">59-61 Exmouth Market, <br>London EC1R 4QL</p>
+                            <div class="hours-box">
+                                <p class="days">
+                                    Mon: <br>
+                                    Tue: <br>
+                                    Wed: <br>
+                                    Thr: <br>
+                                    Fri: <br>
+                                    Sat: <br>
+                                    Sun: <br>
+                                </p>
+                                <p class="hours">
+                                    11:30am - 11:00pm <br>
+                                    12:00am - 10:30pm <br>
+                                    12:00am - 10:30pm <br>
+                                    12:00am - 10:30pm <br>
+                                    12:00am - 11:30pm <br>
+                                    11:30am - 11:00pm <br>
+                                    11:30am - 11:00pm <br>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="map" id="map"></div>   
+                    </div>
+                    <div class="weather-info" id="weather-info">
+                        <div class="weather-summary" id="weather-summary"></div>
+                        <div class="weather-details" id="weather-details"></div>
+                    </div>
+                </div>
+            </div>  
+        </div>
+    </main>
+
+    <footer>
+        <div>
+            <!-- Signup Ticker -->
+            <div class="signup-ticker" id="signupTicker">
+                <div class="signup-content" id="signup-content">
+                    <span>SIGN UP → </span>
+                    <span>ROMA MIA NEWS → </span>
+                    <span>SIGN UP → </span>
+                    <span>ROMA MIA NEWS → </span>
+                    <span>SIGN UP → </span>
+                    <span>ROMA MIA NEWS → </span>
+                </div>
+            </div>
+           
+            <!-- Signup Form - Hidden by default - -->
+            <div class="signup-form-overlay" id="signupFormOverlay">
+                <div class="signup-form-container">
+                <h4>Receive regurlar updates on Roma Mia events, news and much more by signing up to our newsletter. </h4>
+                <form id="signupForm">
+                    <label for="name">First name</label>
+                    <input type="text" id="name" name="name" required />
+            
+                    <label for="name">Last name</label>
+                    <input type="text" id="name" name="name" required />
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required />
+
+                    <label for="consent" class="checkbox-label"> 
+                        <input type="checkbox" id="consent" class="checkbox" name="consent" required />
+                        Tick here if you're happy for us to process your data</label>
+                    <button type="submit">Sign Up</button>
+                </form>
+                </div>
+            </div>
+            
+            <!-- Thank You Message - Hidden by default - -->
+            <div class="thank-you-message" id="thankYouMessage">
+                <p>Thank you for signing up!</p>
+            </div>
+        </div>
+        <div class="footer-content">
+            <!-- First Section -->
+            <div class="first-part-footer">
+                <a href="https://www.google.com/search?q=why+terms+and+conditions+are+important&oq=why+terms+and+conditions+are+important&gs_lcrp=EgZjaHJvbWUyCwgAEEUYExg5GIAEMgoIARAAGBMYFhgeMgoIAhAAGBMYFhgeMgoIAxAAGBMYFhgeMgoIBBAAGBMYFhgeMgoIBRAAGBMYFhgeMgoIBhAAGBMYFhgeMgoIBxAAGBMYFhgeMgoICBAAGIAEGKIEMgoICRAAGIAEGKIE0gEIMzgzOGowajeoAgCwAgA&sourceid=chrome&ie=UTF-8" target="_blank">Terms & Conditions</a>
+                <a href="https://www.google.com/search?q=why+privacy+policies+are+important&sca_esv=6574c06587a52581&sxsrf=ADLYWIJtMv7nA_GGVYVTMnml3BC_Ei4FfA%3A1735957162536&ei=qpp4Z4ezIPOzhbIP_ae46Q0&oq=why+priva+are+important&gs_lp=Egxnd3Mtd2l6LXNlcnAiF3doeSBwcml2YSBhcmUgaW1wb3J0YW50KgIIBTIGEAAYBxgeMgYQABgHGB4yBhAAGAcYHjIGEAAYBxgeMggQABgHGAoYHjIGEAAYBxgeMggQABgHGAgYHjIIEAAYBxgIGB4yCBAAGAcYCBgeMggQABgHGAgYHkjmOlDpBFj7DXABeAGQAQCYAUigAbUCqgEBNbgBA8gBAPgBAZgCBqAC6wLCAgoQABiwAxjWBBhHwgIIEAAYExgHGB7CAgoQABgTGAcYChgewgIJEAAYgAQYExgNwgIKEAAYExgHGAgYHpgDAIgGAZAGCJIHATagB-Em&sclient=gws-wiz-serp" target="_blank">Privacy Policy</a>
+            </div>
+    
+            <!-- Second Section -->
+            <div class="second-part-footer">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+    
+            <!-- Third Section -->
+            <div class="third-part-footer">
+                <p>Created by Jugin Muzhaqi</p>
+                <p>&copy; 2025 Roma Mia. All Rights Reserved.</p>
+            </div>
+    
+            <!-- Fourth Section -->
+            <div class="fourth-part-footer">
+                <nav>
+                    <ul>
+                        <li>EN</li>
+                        <p>-</p>
+                        <li>ES</li>
+                        <p>-</p>
+                        <li>IT</li>
+                        <p>-</p>
+                        <li>FR</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
